@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ТЫ ВЫГЛЯДИШЬ ПИЗДАТО • Special Edition: Алина</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: High-Fashion Editorial Serif & Clean Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- Tone.js для встроенной мелодии шкатулки (если не добавлен свой song.mp3) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paperCream: '#FAF3EE',
+                        blushPink: '#F4DDE1',
+                        dustyRose: '#D68E9B',
+                        deepRose: '#A85766',
+                        espresso: '#241517',
+                        furGold: '#C69058',
+                    },
+                    fontFamily: {
+                        editorial: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Manrope"', 'sans-serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* =========================================================================
+           ПЕРЕМЕННЫЕ ТЕКСТУР (ЛЕОПАРД И КРУЖЕВО)
+           Если положишь рядом с index.html свои файлы 'leopard.jpg' и 'lace.jpg',
+           скрипт внизу автоматически подставит их вместо встроенных текстур!
+           ========================================================================= */
+        :root {
+            /* Встроенный реалистичный мех леопарда (резервная текстура) */
+            --leopard-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cdefs%3E%3CradialGradient id='furBase' cx='50%25' cy='50%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23DFAA6C'/%3E%3Cstop offset='60%25' stop-color='%23C5894B'/%3E%3Cstop offset='100%25' stop-color='%239E632D'/%3E%3C/radialGradient%3E%3Cfilter id='furGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.2  0 0 0 0 0.12  0 0 0 0 0.05  0 0 0 0.28 0'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='220' height='220' fill='url(%23furBase)'/%3E%3Crect width='220' height='220' filter='url(%23furGrain)'/%3E%3Cg fill='%23160D08' opacity='0.92'%3E%3Cpath d='M28 18c9-4 21 1 24 10 3 8-4 18-13 20-9 2-18-5-18-14 0-7 2-13 7-16zm4 6c-3 2-4 6-3 10 1 5 6 8 11 7 5-1 8-6 7-11-2-5-9-8-15-6z'/%3E%3Cellipse cx='38' cy='32' rx='6' ry='5' fill='%238A4B1E'/%3E%3Cpath d='M98 14c11-3 22 4 23 14 1 10-8 18-18 18-10 0-17-8-16-18 1-7 5-12 11-14zm3 7c-4 1-7 5-7 10 0 5 4 9 9 9 6 0 10-4 9-10-1-5-5-10-11-9z'/%3E%3Cellipse cx='104' cy='30' rx='6' ry='5' fill='%237D4117'/%3E%3Cpath d='M168 25c10-4 23 2 25 12 2 10-6 19-16 20-10 1-19-7-18-17 0-7 3-12 9-15zm3 7c-4 2-6 6-5 10 1 5 6 9 11 8 5-1 9-5 8-10-1-5-8-10-14-8z'/%3E%3Cellipse cx='176' cy='40' rx='6' ry='5' fill='%238A4B1E'/%3E%3Cpath d='M55 76c12-4 24 3 26 14 2 11-7 21-18 22-11 1-20-8-19-19 1-8 5-14 11-17zm4 7c-4 2-7 7-6 12 1 6 6 10 12 9 6-1 10-6 9-12-2-6-9-11-15-9z'/%3E%3Cellipse cx='64' cy='93' rx='7' ry='6' fill='%237A3E15'/%3E%3Cpath d='M132 72c10-5 24 1 27 12 3 11-5 22-16 24-11 2-21-6-21-17 0-8 4-15 10-19zm4 7c-4 3-6 8-5 13 1 6 7 10 13 9 6-1 10-7 8-13-2-6-10-11-16-9z'/%3E%3Cellipse cx='142' cy='90' rx='7' ry='6' fill='%238A4B1E'/%3E%3Cpath d='M18 134c11-4 23 2 25 13 2 10-6 20-17 21-10 1-19-7-18-18 1-7 4-13 10-16zm3 7c-4 2-6 7-5 11 1 5 6 9 11 8 6-1 9-6 8-11-1-5-8-10-14-8z'/%3E%3Cellipse cx='27' cy='150' rx='6' ry='5' fill='%237D4117'/%3E%3Cpath d='M94 136c12-3 24 5 25 16 1 11-8 20-19 20-11 0-19-9-18-20 1-8 5-14 12-16zm3 7c-5 2-7 6-7 11 0 6 5 10 11 10 6 0 10-5 9-11-1-5-6-11-13-10z'/%3E%3Cellipse cx='101' cy='153' rx='7' ry='6' fill='%238A4B1E'/%3E%3Cpath d='M165 132c11-4 23 2 25 13 2 10-6 20-17 21-10 1-19-7-18-18 1-7 4-13 10-16zm3 7c-4 2-6 7-5 11 1 5 6 9 11 8 6-1 9-6 8-11-1-5-8-10-14-8z'/%3E%3Cellipse cx='174' cy='148' rx='6' ry='5' fill='%237A3E15'/%3E%3Cpath d='M52 182c10-4 22 2 24 12 2 10-6 18-16 19-10 1-18-7-17-17 0-7 3-12 9-14z'/%3E%3Cpath d='M134 185c10-4 22 2 24 12 2 10-6 18-16 19-10 1-18-7-17-17 0-7 3-12 9-14z'/%3E%3Ccircle cx='76' cy='46' r='5'/%3E%3Ccircle cx='144' cy='48' r='4.5'/%3E%3Ccircle cx='18' cy='96' r='5.5'/%3E%3Ccircle cx='102' cy='106' r='5'/%3E%3Ccircle cx='196' cy='98' r='5'/%3E%3Ccircle cx='66' cy='144' r='4.5'/%3E%3Ccircle cx='142' cy='142' r='5'/%3E%3C/g%3E%3C/svg%3E");
+
+            /* Встроенное ажурное чёрное кружево на белом фоне для mix-blend-mode: multiply */
+            --lace-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23FFFFFF'/%3E%3Cg fill='none' stroke='%23111111'%3E%3C!-- Сетка фатина --%3E%3Cpath d='M0 0 L180 180 M30 0 L180 150 M60 0 L180 120 M90 0 L180 90 M120 0 L180 60 M150 0 L180 30 M0 30 L150 180 M0 60 L120 180 M0 90 L90 180 M0 120 L60 180 M0 150 L30 180' stroke-width='0.6' stroke-opacity='0.35'/%3E%3Cpath d='M180 0 L0 180 M150 0 L0 150 M120 0 L0 120 M90 0 L0 90 M60 0 L0 60 M30 0 L0 30 M180 30 L30 180 M180 60 L60 180 M180 90 L90 180 M180 120 L120 180 M180 150 L150 180' stroke-width='0.6' stroke-opacity='0.35'/%3E%3C!-- Цветочные кружевные медальоны --%3E%3Cg transform='translate(45,45)'%3E%3Ccircle r='28' stroke-width='2.2' stroke-dasharray='4 3'/%3E%3Ccircle r='18' stroke-width='1.5'/%3E%3Ccircle r='6' fill='%23111111'/%3E%3Cpath d='M0-28 C8-18 8-8 0 0 C-8-8 -8-18 0-28 Z M0 28 C8 18 8 8 0 0 C-8 8 -8 18 0 28 Z M-28 0 C-18-8 -8-8 0 0 C-8 8 -18 8 -28 0 Z M28 0 C18-8 8-8 0 0 C8 8 18 8 28 0 Z' fill='%23111111' fill-opacity='0.82'/%3E%3Cpath d='M-20-20 C-10-16 -4-10 0 0 C-10-4 -16-10 -20-20 Z M20-20 C16-10 10-4 0 0 C4-10 10-16 20-20 Z M-20 20 C-16 10 -10 4 0 0 C-4 10 -10 16 -20 20 Z M20 20 C10 16 4 10 0 0 C10 4 16 10 20 20 Z' fill='%23111111' fill-opacity='0.75'/%3E%3C/g%3E%3Cg transform='translate(135,135)'%3E%3Ccircle r='30' stroke-width='2.4' stroke-dasharray='5 3'/%3E%3Ccircle r='19' stroke-width='1.5'/%3E%3Ccircle r='6' fill='%23111111'/%3E%3Cpath d='M0-30 C9-19 9-9 0 0 C-9-9 -9-19 0-30 Z M0 30 C9 19 9 9 0 0 C-9 9 -9 19 0 30 Z M-30 0 C-19-9 -9-9 0 0 C-9 9 -19 9 -30 0 Z M30 0 C19-9 9-9 0 0 C9 9 19 9 30 0 Z' fill='%23111111' fill-opacity='0.85'/%3E%3C/g%3E%3Cg transform='translate(135,45)'%3E%3Cpath d='M-22 10 C-22-14 14-24 22-4 C26 8 10 22 -4 16 C-12 12 -10 0 0 -2' stroke-width='3'/%3E%3Ccircle cx='4' cy='-4' r='4' fill='%23111111'/%3E%3Ccircle cx='-14' cy='-12' r='2.5' fill='%23111111'/%3E%3Ccircle cx='18' cy='14' r='2.5' fill='%23111111'/%3E%3C/g%3E%3Cg transform='translate(45,135)'%3E%3Cpath d='M22-10 C22 14 -14 24 -22 4 C-26-8 -10-22 4-16 C12-12 10 0 0 2' stroke-width='3'/%3E%3Ccircle cx='-4' cy='4' r='4' fill='%23111111'/%3E%3Ccircle cx='14' cy='12' r='2.5' fill='%23111111'/%3E%3Ccircle cx='-18' cy='-14' r='2.5' fill='%23111111'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* =========================================================================
+           БАЗОВЫЙ ФОН И ТЕКСТУРЫ БУМАГИ
+           ========================================================================= */
+        body {
+            background-color: #F4DDE1;
+            color: #241517;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Текстура матовой журнальной бумаги */
+        .cream-paper {
+            background-color: #FAF3EE;
+            background-image: radial-gradient(rgba(36, 21, 23, 0.035) 1px, transparent 0);
+            background-size: 18px 18px;
+        }
+
+        /* Леопардовый мех */
+        .leopard-fur {
+            background-image: var(--leopard-img);
+            background-size: 210px auto;
+            background-repeat: repeat;
+            box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Чёрное кружево (белый фон вычитается через mix-blend-mode: multiply!) */
+        .black-lace-overlay {
+            background-image: var(--lace-img);
+            background-size: 170px 170px;
+            background-repeat: repeat;
+            mix-blend-mode: multiply;
+            pointer-events: none;
+        }
+
+        /* Рваный / коллажный край для леопардовых полос */
+        .collage-strip-left {
+            clip-path: polygon(0 0, 92% 0, 100% 14%, 88% 29%, 98% 45%, 90% 62%, 100% 78%, 91% 92%, 96% 100%, 0 100%);
+        }
+
+        .collage-strip-right {
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 4% 100%, 12% 84%, 2% 68%, 11% 51%, 0% 34%, 10% 17%);
+        }
+
+        /* Уголки кружева на карточках */
+        .lace-corner-tl {
+            clip-path: polygon(0 0, 100% 0, 72% 28%, 45% 42%, 26% 74%, 0 100%);
+        }
+        .lace-corner-tr {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 74% 72%, 52% 40%, 24% 22%);
+        }
+        .lace-corner-bl {
+            clip-path: polygon(0 0, 26% 30%, 48% 62%, 78% 76%, 100% 100%, 0 100%);
+        }
+        .lace-corner-br {
+            clip-path: polygon(74% 28%, 100% 0, 100% 100%, 0 100%, 24% 76%, 52% 60%);
+        }
+
+        /* =========================================================================
+           АНИМАЦИЯ ПОДАРОЧНОЙ КОРОБКИ (ВИД СВЕРХУ)
+           ========================================================================= */
+        #gift-overlay {
+            transition: opacity 1.05s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.05s;
+        }
+
+        .gift-lid {
+            transition: transform 1.2s cubic-bezier(0.34, 1.25, 0.64, 1), opacity 0.95s ease;
+            box-shadow: 0 28px 65px rgba(36, 21, 23, 0.28), inset 0 0 35px rgba(255, 255, 255, 0.65);
+        }
+
+        .ribbon-v, .ribbon-h {
+            transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.65s ease;
+        }
+
+        .bow-wrapper {
+            transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.55s ease;
+        }
+
+        .gift-opening .bow-wrapper {
+            transform: translate(-50%, -50%) scale(1.45) rotate(22deg);
+            opacity: 0;
+        }
+        .gift-opening .ribbon-v {
+            transform: scaleY(0);
+            opacity: 0;
+        }
+        .gift-opening .ribbon-h {
+            transform: scaleX(0);
+            opacity: 0;
+        }
+        .gift-opening .gift-lid {
+            transform: translateY(-115%) rotate(-5deg) scale(1.04);
+            opacity: 0;
+        }
+
+        @keyframes bowBreath {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.06); }
+        }
+        .bow-pulse {
+            animation: bowBreath 2.3s infinite ease-in-out;
+        }
+
+        /* Эквалайзер на кнопке музыки */
+        @keyframes eqWave {
+            0%, 100% { height: 4px; }
+            50% { height: 14px; }
+        }
+        .eq-active span:nth-child(1) { animation: eqWave 0.6s infinite ease-in-out; }
+        .eq-active span:nth-child(2) { animation: eqWave 0.85s infinite ease-in-out 0.15s; }
+        .eq-active span:nth-child(3) { animation: eqWave 0.55s infinite ease-in-out 0.25s; }
+
+        /* Плавное появление секций при скролле */
+        .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: all 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Буквица в письме редактора */
+        .drop-cap::first-letter {
+            float: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 4.1rem;
+            line-height: 0.82;
+            padding-top: 4px;
+            padding-right: 12px;
+            padding-bottom: 2px;
+            color: #A85766;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="selection:bg-dustyRose/30 selection:text-espresso">
+
+    <!-- =========================================================================
+         АУДИОПЛЕЕР
+         Положи вашу песню рядом с index.html и назови её 'song.mp3'.
+         Если файла ещё нет, сайт автоматически сыграет нежную мелодию шкатулки!
+         ========================================================================= -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Плавающая кнопка управления музыкой в правом нижнем углу (как на макете) -->
+    <button id="music-toggle" onclick="toggleMusic()" aria-label="Включить или выключить музыку"
+        class="fixed bottom-5 right-5 z-40 hidden items-center gap-2 bg-[#FAF3EE]/95 backdrop-blur-md border border-dustyRose/50 text-espresso px-3.5 py-2.5 rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all duration-300">
+        <div id="eq-bars" class="flex items-end gap-[2.5px] h-3.5 w-3.5">
+            <span class="w-[3px] bg-deepRose rounded-full h-1.5"></span>
+            <span class="w-[3px] bg-espresso rounded-full h-3"></span>
+            <span class="w-[3px] bg-deepRose rounded-full h-2"></span>
+        </div>
+        <span id="music-label" class="text-[11px] font-bold uppercase tracking-wider">Музыка</span>
+    </button>
+
+
+    <!-- =========================================================================
+         ЭКРАН 1: ИНТЕРАКТИВНАЯ ПОДАРОЧНАЯ КОРОБКА (ВИД СВЕРХУ)
+         ========================================================================= -->
+    <div id="gift-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-blushPink overflow-hidden select-none">
+        
+        <!-- Фоновые коллажные вставки леопарда и кружева вокруг коробки -->
+        <div class="absolute inset-y-0 left-0 w-16 sm:w-28 leopard-fur opacity-85 collage-strip-left"></div>
+        <div class="absolute inset-y-0 right-0 w-16 sm:w-28 leopard-fur opacity-85 collage-strip-right"></div>
+        <div class="absolute inset-0 black-lace-overlay opacity-40"></div>
+
+        <!-- Крышка подарочной коробки (вид сверху) -->
+        <div id="gift-box" onclick="openGift()" role="button" tabindex="0"
+            class="gift-lid relative w-[90vw] max-w-[500px] h-[82vh] max-h-[680px] rounded-2xl cream-paper border-2 border-white cursor-pointer flex flex-col items-center justify-between p-6 sm:p-8 overflow-hidden group">
+
+            <!-- Леопардовая кайма по краям крышки -->
+            <div class="absolute inset-0 border-[10px] sm:border-[14px] leopard-fur opacity-90 pointer-events-none"></div>
+            <!-- Чёрное кружево по углам крышки -->
+            <div class="absolute top-2 left-2 w-40 h-40 black-lace-overlay lace-corner-tl opacity-85"></div>
+            <div class="absolute bottom-2 right-2 w-40 h-40 black-lace-overlay lace-corner-br opacity-85"></div>
+
+            <!-- Верхняя надпись на крышке -->
+            <div class="relative z-10 text-center mt-2">
+                <span class="inline-block bg-blushPink/90 border border-dustyRose/40 px-3.5 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-deepRose">
+                    Special Edition • 05.12
+                </span>
+            </div>
+
+            <!-- Вертикальная атласная лента -->
+            <div class="ribbon-v absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-12 sm:w-14 bg-gradient-to-r from-[#DFA0AC] via-[#F7D7DD] to-[#C97B89] shadow-lg z-20 pointer-events-none border-x border-white/50"></div>
+
+            <!-- Горизонтальная атласная лента -->
+            <div class="ribbon-h absolute left-0 right-0 top-1/2 -translate-y-1/2 h-12 sm:h-14 bg-gradient-to-b from-[#DFA0AC] via-[#F7D7DD] to-[#C97B89] shadow-lg z-20 pointer-events-none border-y border-white/50"></div>
+
+            <!-- Пышный шелковый бант в центре -->
+            <div class="bow-wrapper bow-pulse absolute top-1/2 left-1/2 z-30 w-52 h-52 sm:w-64 sm:h-64 pointer-events-none drop-shadow-2xl">
+                <svg viewBox="0 0 240 240" class="w-full h-full overflow-visible">
+                    <defs>
+                        <linearGradient id="silkA" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FCE6EA" />
+                            <stop offset="50%" stop-color="#DF95A3" />
+                            <stop offset="100%" stop-color="#B06270" />
+                        </linearGradient>
+                        <linearGradient id="silkB" x1="100%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FFF0F3" />
+                            <stop offset="50%" stop-color="#D18493" />
+                            <stop offset="100%" stop-color="#9E5260" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Концы ленты -->
+                    <path d="M115 125 L66 208 L89 200 L102 218 L122 130 Z" fill="url(#silkA)" />
+                    <path d="M125 125 L174 208 L151 200 L138 218 L118 130 Z" fill="url(#silkB)" />
+                    <!-- Левое крыло банта -->
+                    <path d="M118 120 C72 62, 18 84, 32 126 C42 160, 92 146, 118 122 Z" fill="url(#silkA)" stroke="#FFF" stroke-width="1" stroke-opacity="0.6"/>
+                    <path d="M112 120 C78 88, 46 102, 55 123 C61 139, 90 132, 112 120 Z" fill="#8C4350" opacity="0.25"/>
+                    <!-- Правое крыло банта -->
+                    <path d="M122 120 C168 62, 222 84, 208 126 C198 160, 148 146, 122 122 Z" fill="url(#silkB)" stroke="#FFF" stroke-width="1" stroke-opacity="0.6"/>
+                    <path d="M128 120 C162 88, 194 102, 185 123 C179 139, 150 132, 128 120 Z" fill="#8C4350" opacity="0.25"/>
+                    <!-- Верхние петли -->
+                    <path d="M118 118 C84 50, 52 46, 70 82 C84 106, 106 115, 118 118 Z" fill="url(#silkB)"/>
+                    <path d="M122 118 C156 50, 188 46, 170 82 C156 106, 134 115, 122 118 Z" fill="url(#silkA)"/>
+                    <!-- Узел -->
+                    <rect x="103" y="103" width="34" height="34" rx="10" fill="url(#silkA)" stroke="#FFF" stroke-width="1.5" stroke-opacity="0.75"/>
+                </svg>
+
+                <!-- Журнальная бирка на банте -->
+                <div class="absolute -bottom-2 -right-2 rotate-6 cream-paper border border-espresso/20 rounded-xl px-3.5 py-2 shadow-lg">
+                    <span class="font-editorial italic font-bold text-sm text-espresso whitespace-nowrap">Для Алины • 5 декабря</span>
+                </div>
+            </div>
+
+            <!-- Подсказка внизу -->
+            <div class="relative z-30 mb-2">
+                <div class="cream-paper border border-espresso/20 px-5 py-2.5 rounded-full shadow-lg group-hover:scale-105 transition-transform">
+                    <p class="text-xs sm:text-sm font-semibold text-espresso tracking-wide">
+                        ✨ Нажми на бант, чтобы открыть выпуск
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =========================================================================
+         ОСНОВНОЙ ЖУРНАЛ (КОЛЛАЖНЫЙ ГЛЯНЦЕВЫЙ МАКЕТ)
+         ========================================================================= -->
+    <div class="relative min-h-screen overflow-hidden pb-12">
+
+        <!-- Фоновые боковые полосы леопардового меха и кружева на подложке журнала (как на референсе) -->
+        <div class="fixed inset-y-0 left-0 w-7 sm:w-16 md:w-24 leopard-fur opacity-90 collage-strip-left pointer-events-none z-0"></div>
+        <div class="fixed inset-y-0 right-0 w-7 sm:w-16 md:w-24 leopard-fur opacity-90 collage-strip-right pointer-events-none z-0"></div>
+        <div class="fixed top-10 left-0 w-36 h-80 black-lace-overlay opacity-75 pointer-events-none z-0"></div>
+        <div class="fixed bottom-16 right-0 w-36 h-80 black-lace-overlay opacity-75 pointer-events-none z-0"></div>
+
+        <main class="relative z-10 max-w-2xl md:max-w-3xl mx-auto px-4 sm:px-8 pt-6 sm:pt-10">
+
+            <!-- =================================================================
+                 СТРАНИЦА 1: ОБЛОЖКА ЖУРНАЛА «ТЫ ВЫГЛЯДИШЬ ПИЗДАТО»
+                 ================================================================= -->
+            <section class="relative mb-12 sm:mb-16">
+                
+                <!-- Выступающая слева полоса леопардового меха под обложкой (коллажный слой) -->
+                <div class="absolute -left-2.5 sm:-left-4 top-2 bottom-2 w-8 sm:w-12 leopard-fur rounded-l-xl shadow-xl collage-strip-left z-0"></div>
+                <!-- Выступающее справа вверху кружево -->
+                <div class="absolute -right-2 -top-2 w-36 h-36 sm:w-48 sm:h-48 black-lace-overlay lace-corner-tr z-20 opacity-90"></div>
+
+                <!-- Главный лист кремовой журнальной бумаги -->
+                <div class="relative z-10 cream-paper rounded-xl sm:rounded-2xl shadow-[0_20px_50px_rgba(36,21,23,0.22)] border border-white/80 px-4 sm:px-9 pt-4 pb-7 sm:pb-10 overflow-hidden">
+                    
+                    <!-- Кружевной акцент в правом верхнем углу листа -->
+                    <div class="absolute top-0 right-0 w-44 h-44 sm:w-60 sm:h-60 black-lace-overlay lace-corner-tr opacity-85"></div>
+                    <!-- Кружевной акцент в левом нижнем углу листа -->
+                    <div class="absolute bottom-0 left-0 w-40 h-40 sm:w-52 sm:h-52 black-lace-overlay lace-corner-bl opacity-80"></div>
+
+                    <!-- Шапка журнала -->
+                    <div class="relative z-10 flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-espresso/75 font-bold border-b border-espresso/15 pb-2 mb-3">
+                        <span>05.12 • BIRTHDAY ISSUE</span>
+                        <span>SPECIAL EDITION: АЛИНА</span>
+                    </div>
+
+                    <!-- ГЛАВНЫЙ ЗАГОЛОВОК ОБЛОЖКИ -->
+                    <header class="relative z-10 text-center my-2 sm:my-3">
+                        <h1 class="font-editorial text-espresso uppercase tracking-tight">
+                            <span class="block text-2xl sm:text-4xl md:text-[2.75rem] font-semibold tracking-[0.04em] leading-none">
+                                ТЫ ВЫГЛЯДИШЬ
+                            </span>
+                            <span class="block text-[3.1rem] sm:text-[5rem] md:text-[6.2rem] font-extrabold leading-[0.92] mt-1 tracking-tight text-espresso">
+                                ПИЗДАТО
+                            </span>
+                        </h1>
+                    </header>
+
+                    <!-- РАМКА С ПОРТРЕТОМ АЛИНЫ (ЛЕОПАРДОВЫЕ КРАЯ + ЧЁРНОЕ КРУЖЕВО + ЦИТАТА) -->
+                    <div class="relative z-10 mt-4 sm:mt-6 mx-auto max-w-md">
+                        
+                        <!-- Внешняя коллажная подложка из леопарда -->
+                        <div class="relative p-2.5 sm:p-3.5 leopard-fur rounded-xl shadow-xl">
+                            
+                            <!-- Внутренняя светлая паспарту-рамка -->
+                            <div class="relative bg-[#FAF3EE] p-1.5 sm:p-2 rounded-lg overflow-hidden">
+                                
+                                <!-- Контейнер главного фото -->
+                                <div class="relative aspect-[3/4] w-full overflow-hidden rounded bg-blushPink/40">
+                                    
+                                    <!-- ПОДСКАЗКА: Положи главное фото Алины рядом с index.html и назови его 'cover.jpg' -->
+                                    <img id="cover-photo"
+                                         src="cover.jpg"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/900x1200/EBD7DA/241517?text=Главное+фото+Алины%0A(положи+файл+cover.jpg)';"
+                                         alt="Алина — главная обложка"
+                                         class="w-full h-full object-cover object-center">
+
+                                    <!-- Чёрное кружево в левом верхнем углу фото (как на референсе) -->
+                                    <div class="absolute top-0 left-0 w-32 h-32 sm:w-44 sm:h-44 black-lace-overlay lace-corner-tl opacity-90"></div>
+                                    
+                                    <!-- Чёрное кружево в правом нижнем углу фото -->
+                                    <div class="absolute bottom-0 right-0 w-32 h-32 sm:w-44 sm:h-44 black-lace-overlay lace-corner-br opacity-90"></div>
+
+                                    <!-- Мягкое затемнение снизу для идеальной читаемости цитаты -->
+                                    <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#1A0E10]/90 via-[#1A0E10]/55 to-transparent pointer-events-none"></div>
+
+                                    <!-- ЦИТАТА ПОВЕРХ НИЖНЕЙ ЧАСТИ ФОТО -->
+                                    <div class="absolute inset-x-3 sm:inset-x-5 bottom-3.5 sm:bottom-5 text-center z-10">
+                                        <p class="font-serif italic text-white text-base sm:text-xl md:text-[1.35rem] leading-snug drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">
+                                            «Мне не нужно хотеть быть твоим фанатом, ведь я уже им стал в день нашей первой встречи»
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Нижняя строка обложки (журнальные детали) -->
+                    <div class="relative z-10 mt-5 pt-3 border-t border-espresso/15 flex items-center justify-between text-[11px] text-espresso/75 font-medium">
+                        <span>Эксклюзивный выпуск ко Дню Рождения</span>
+                        <span class="font-editorial italic font-bold text-deepRose">05 декабря</span>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- =================================================================
+                 СТРАНИЦА 2: БЛОК «В ЦИФРАХ» (КАК НА РЕФЕРЕНСЕ)
+                 ================================================================= -->
+            <section id="stats-section" class="reveal relative mb-12 sm:mb-16">
+                
+                <!-- Справа выглядывает блок леопардового меха (эффект многослойного коллажа) -->
+                <div class="hidden sm:block absolute -right-5 top-12 w-16 h-64 leopard-fur rounded-r-xl shadow-lg z-0"></div>
+
+                <!-- Карточка-страница статистики -->
+                <div class="relative z-10 cream-paper rounded-xl sm:rounded-2xl shadow-[0_18px_45px_rgba(36,21,23,0.18)] border border-white/80 px-5 sm:px-10 py-8 sm:py-11 overflow-hidden">
+                    
+                    <!-- Деликатное кружево сверху слева и справа -->
+                    <div class="absolute top-0 left-0 w-44 h-44 sm:w-56 sm:h-56 black-lace-overlay lace-corner-tl opacity-35"></div>
+                    <div class="absolute top-0 right-0 w-44 h-44 sm:w-56 sm:h-56 black-lace-overlay lace-corner-tr opacity-35"></div>
+
+                    <!-- Контрастное чёрное кружево снизу слева -->
+                    <div class="absolute bottom-0 left-0 w-36 h-44 sm:w-48 sm:h-56 black-lace-overlay lace-corner-bl opacity-90"></div>
+                    <!-- Леопардовый уголок снизу справа -->
+                    <div class="absolute bottom-0 right-0 w-28 h-28 sm:w-36 sm:h-36 leopard-fur lace-corner-br opacity-95"></div>
+
+                    <div class="relative z-10 text-center">
+                        <span class="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-deepRose font-bold">
+                            Наша история в цифрах • Стр. 02
+                        </span>
+                       
+
+                        <!-- 2. ЖИВОЙ СЧЕТЧИК МИНУТ СЧАСТЬЯ (с 22 апреля 2026, 22:05) -->
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 px-4 sm:px-6 rounded-2xl bg-blushPink/35 border border-dustyRose/30 mb-6">
+                            <div class="text-center sm:text-left">
+                                <p class="font-serif text-lg sm:text-xl font-semibold text-espresso leading-tight">
+                                    Ровно столько минут рядом с тобой<br class="hidden sm:inline"> я чувствовал себя счастливым
+                                </p>
+                                <span class="text-[11px] text-deepRose font-semibold uppercase tracking-wider">
+                                    С 22 апреля, 22:05 (когда ты написала первой)
+                                </span>
+                            </div>
+                            <div class="text-center sm:text-right shrink-0">
+                                <div class="font-editorial font-bold text-3xl sm:text-4xl text-espresso tracking-tight tabular-nums">
+                                    <span id="minutes-counter">0</span>:<span id="seconds-counter" class="text-deepRose">00</span>
+                                </div>
+                                <span class="text-[10px] uppercase tracking-widest text-espresso/65 font-bold">минут : секунд</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. ЖИВОЙ СЧЕТЧИК ДНЕЙ УЛЫБОК (с 20 мая 2026) -->
+                        <div class="pt-2 pb-4">
+                            <p class="font-serif text-xl sm:text-2xl font-semibold text-espresso leading-snug mb-3">
+                                Ровно столько дней ты заставляешь меня улыбаться
+                            </p>
+                            
+                            <!-- Таймер в формате ДД : ЧЧ : ММ : СС -->
+                            <div class="inline-flex items-center justify-center gap-2 sm:gap-4 font-editorial font-bold text-3xl sm:text-5xl text-espresso tabular-nums">
+                                <div class="flex flex-col items-center">
+                                    <span id="rel-days">00</span>
+                                    <span class="font-sans text-[9px] sm:text-[10px] uppercase tracking-widest text-espresso/60 font-semibold mt-1">дней</span>
+                                </div>
+                                <span class="text-deepRose -mt-4">:</span>
+                                <div class="flex flex-col items-center">
+                                    <span id="rel-hours">00</span>
+                                    <span class="font-sans text-[9px] sm:text-[10px] uppercase tracking-widest text-espresso/60 font-semibold mt-1">часов</span>
+                                </div>
+                                <span class="text-deepRose -mt-4">:</span>
+                                <div class="flex flex-col items-center">
+                                    <span id="rel-mins">00</span>
+                                    <span class="font-sans text-[9px] sm:text-[10px] uppercase tracking-widest text-espresso/60 font-semibold mt-1">минут</span>
+                                </div>
+                                <span class="text-deepRose -mt-4">:</span>
+                                <div class="flex flex-col items-center">
+                                    <span id="rel-secs" class="text-deepRose">00</span>
+                                    <span class="font-sans text-[9px] sm:text-[10px] uppercase tracking-widest text-espresso/60 font-semibold mt-1">секунд</span>
+                                </div>
+                            </div>
+                            <p class="text-[11px] text-espresso/65 mt-3">
+                                Отсчёт идёт с 20 мая — дня, когда мы начали встречаться ♥
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- =================================================================
+                 СТРАНИЦА 3: СЛОВО ГЛАВНОГО РЕДАКТОРА (ТЕКСТ ПОЗДРАВЛЕНИЯ)
+                 ================================================================= -->
+            <section class="reveal relative mb-12 sm:mb-16">
+                <div class="relative cream-paper rounded-xl sm:rounded-2xl shadow-[0_18px_45px_rgba(36,21,23,0.16)] border border-white/80 p-6 sm:p-10 overflow-hidden">
+                    
+                    <!-- Леопардовая закладка сверху -->
+                    <div class="w-24 h-2 leopard-fur rounded-full mb-4"></div>
+                    <!-- Кружево в правом нижнем углу -->
+                    <div class="absolute bottom-0 right-0 w-40 h-40 black-lace-overlay lace-corner-br opacity-45"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-espresso/15 pb-3 mb-5">
+                            <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-espresso">
+                                Слово главного редактора
+                            </h2>
+                            <span class="text-xs uppercase tracking-[0.2em] text-deepRose font-bold">Стр. 03</span>
+                        </div>
+
+                        <!-- Текст поздравления (можешь отредактировать любые слова под себя) -->
+                        <div class="space-y-4 text-espresso/90 text-base sm:text-[17px] leading-relaxed font-normal">
+                            <p class="drop-cap">
+                                Алина, с Днём Рождения! Сегодня весь этот глянцевый выпуск посвящён только тебе — самой красивой, яркой и невероятной девушке, рядом с которой каждый день ощущается как особенное событие.
+                            </p>
+                            <p>
+                                Когда 22 апреля в 22:05 от тебя пришло то самое первое сообщение, я ещё не догадывался, насколько сильно ты изменишь мою жизнь. А 20 мая стало началом нашей самой красивой истории. Спасибо тебе за твою улыбку, за каждое твое сообщение с поддержкой и за то, что рядом с тобой я по-настоящему счастлив.
+                            </p>
+                            <p>
+                                Пусть в твоей жизни всегда будет место для больших мечтаний, спонтанных радостей, красивых моментов и поводов сиять так, как умеешь только ты. Оставайся такой же неповторимой — а я всегда буду рядом, твоим главным фанатом.
+                            </p>
+                        </div>
+
+                        <div class="mt-7 pt-4 border-t border-espresso/15 flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] uppercase tracking-widest text-espresso/60 block">С любовью,</span>
+                                <span class="font-hand text-3xl text-deepRose font-bold">Твой главный фанат ♥</span>
+                            </div>
+                            <span class="px-3.5 py-1.5 rounded-full bg-blushPink/70 text-espresso text-xs font-bold">
+                                05.12 • Happy Birthday
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- =================================================================
+                 СТРАНИЦА 4: ФОТОИСТОРИЯ (20 КАДРОВ В ЖУРНАЛЬНОЙ ВЕРСТКЕ)
+                 ================================================================= -->
+            <section class="reveal relative mb-12 sm:mb-16">
+                <div class="cream-paper rounded-xl sm:rounded-2xl shadow-[0_18px_45px_rgba(36,21,23,0.18)] border border-white/80 p-5 sm:p-9 relative overflow-hidden">
+                    
+                    <!-- Кружевной акцент сверху -->
+                    <div class="absolute top-0 left-0 w-44 h-44 black-lace-overlay lace-corner-tl opacity-40"></div>
+
+                    <div class="relative z-10 text-center mb-7">
+                        <span class="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-deepRose font-bold">
+                            Photo Editorial • Стр. 04–23
+                        </span>
+                        <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-espresso mt-1">
+                            20 кадров <span class="italic font-normal text-deepRose">нашей истории</span>
+                        </h2>
+                        <p class="text-xs sm:text-sm text-espresso/70 mt-1.5">
+                            Нажми на любое фото, чтобы открыть его крупно
+                        </p>
+                    </div>
+
+                    <!-- Сетка из 20 фотографий -->
+                    <div id="gallery-grid" class="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-5">
+                        <!-- Генерируется автоматически из массива PHOTOS -->
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- =================================================================
+                 ЗАДНЯЯ ОБЛОЖКА ЖУРНАЛА
+                 ================================================================= -->
+            <footer class="reveal relative cream-paper rounded-xl sm:rounded-2xl shadow-xl border border-white/80 p-7 sm:p-10 text-center overflow-hidden">
+                <div class="absolute inset-x-0 top-0 h-2.5 leopard-fur"></div>
+                <div class="absolute bottom-0 right-0 w-36 h-36 black-lace-overlay lace-corner-br opacity-50"></div>
+
+                <div class="relative z-10">
+                    <p class="text-[10px] uppercase tracking-[0.28em] text-deepRose font-bold mb-2">
+                        Back Cover • Выпуск №1
+                    </p>
+                    <h3 class="font-editorial text-2xl sm:text-4xl font-bold text-espresso">
+                        С Днём Рождения, Алина!
+                    </h3>
+                    <p class="font-hand text-2xl sm:text-3xl text-deepRose mt-1.5">
+                        Продолжение нашей истории следует... ✨
+                    </p>
+
+                    <button onclick="resetGift()"
+                        class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blushPink hover:bg-dustyRose/40 text-espresso border border-dustyRose/40 text-xs font-bold uppercase tracking-wider transition-all shadow-sm">
+                        <span>🎀</span>
+                        <span>Завязать подарок снова</span>
+                    </button>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+
+    <!-- =========================================================================
+         ЛАЙТБОКС (ПРОСМОТР ФОТО ВО ВЕСЬ ЭКРАН)
+         ========================================================================= -->
+    <div id="lightbox" onclick="closeLightbox(event)"
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-espresso/85 backdrop-blur-md p-4">
+        <div class="relative max-w-md w-full cream-paper rounded-2xl p-3 sm:p-4 shadow-2xl border border-white/60">
+            
+            <button onclick="closeLightbox(event, true)" aria-label="Закрыть"
+                class="absolute -top-3 -right-3 z-20 w-9 h-9 rounded-full bg-white text-espresso border border-espresso/20 shadow-lg flex items-center justify-center font-bold hover:bg-blushPink transition">
+                ✕
+            </button>
+
+            <div class="p-1.5 leopard-fur rounded-xl">
+                <div class="rounded-lg overflow-hidden bg-blushPink/20 aspect-[3/4] max-h-[68vh] mx-auto">
+                    <img id="lightbox-img" src="" alt="" class="w-full h-full object-contain bg-[#FAF3EE]">
+                </div>
+            </div>
+
+            <div class="mt-3 px-1 flex items-center justify-between gap-2">
+                <div>
+                    <span id="lightbox-num" class="text-[10px] uppercase tracking-widest text-deepRose font-bold">Кадр 01 / 20</span>
+                    <p id="lightbox-caption" class="font-serif italic text-lg text-espresso font-semibold leading-tight"></p>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                    <button onclick="navigateLightbox(-1, event)" class="w-9 h-9 rounded-full bg-blushPink/60 border border-dustyRose/30 flex items-center justify-center text-espresso font-bold hover:bg-blushPink">‹</button>
+                    <button onclick="navigateLightbox(1, event)" class="w-9 h-9 rounded-full bg-blushPink/60 border border-dustyRose/30 flex items-center justify-center text-espresso font-bold hover:bg-blushPink">›</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =========================================================================
+         JAVASCRIPT: ТЕКСТУРЫ, СЧЕТЧИКИ, ГАЛЕРЕЯ И МУЗЫКА
+         ========================================================================= -->
+    <script>
+        /* =====================================================================
+           1. АВТОПОДГРУЗКА ТВОИХ ЛОКАЛЬНЫХ ТЕКСТУР (leopard.jpg и lace.jpg)
+           Если ты положишь файлы 'leopard.jpg' и 'lace.jpg' рядом с index.html,
+           сайт автоматически использует именно твои картинки!
+           ===================================================================== */
+        function preloadCustomTextures() {
+            const leopardImg = new Image();
+            leopardImg.onload = () => {
+                document.documentElement.style.setProperty('--leopard-img', "url('leopard.jpg')");
+            };
+            leopardImg.src = 'leopard.jpg';
+
+            const laceImg = new Image();
+            laceImg.onload = () => {
+                document.documentElement.style.setProperty('--lace-img', "url('lace.jpg')");
+            };
+            laceImg.src = 'lace.jpg';
+        }
+
+        /* =====================================================================
+           2. ДАТЫ И СЧЕТЧИКИ
+           ===================================================================== */
+        const CONFIG = {
+            // 22 апреля 2026 в 22:05 (первое сообщение)
+            firstMessageDate: new Date(2026, 3, 22, 22, 5, 0),
+            // 20 мая 2026 (начало отношений)
+            relationshipStartDate: new Date(2026, 4, 20, 0, 0, 0),
+            // Количество сообщений
+            totalMessages: 16707
+        };
+
+        /* =====================================================================
+           3. СПИСОК ИЗ 20 ФОТОГРАФИЙ
+           Положи файлы '1.jpg', '2.jpg' ... '20.jpg' в папку с index.html.
+           Пока файлов нет, автоматически отображаются аккуратные заглушки.
+           ===================================================================== */
+        const PHOTOS = [
+            { src: '1.jpg',  caption: 'Начало нашей истории', tag: '01' },
+            { src: '2.jpg',  caption: 'Твоя невероятная улыбка', tag: '02' },
+            { src: '3.jpg',  caption: 'Момент, который хочется сохранить', tag: '03' },
+            { src: '4.jpg',  caption: 'Самая красивая в мире', tag: '04' },
+            { src: '5.jpg',  caption: 'Наши прогулки и смех', tag: '05' },
+            { src: '6.jpg',  caption: 'Взгляд, в который я влюбился', tag: '06' },
+            { src: '7.jpg',  caption: 'Идеальный вечер вдвоём', tag: '07' },
+            { src: '8.jpg',  caption: 'Стиль на максимум', tag: '08' },
+            { src: '9.jpg',  caption: 'Счастье в мелочах', tag: '09' },
+            { src: '10.jpg', caption: 'Середина нашего альбома', tag: '10' },
+            { src: '11.jpg', caption: 'Твой фирменный вайб', tag: '11' },
+            { src: '12.jpg', caption: 'Любимый кадр', tag: '12' },
+            { src: '13.jpg', caption: 'Когда весь мир подождёт', tag: '13' },
+            { src: '14.jpg', caption: 'Сияешь ярче всех', tag: '14' },
+            { src: '15.jpg', caption: 'Тёплые воспоминания', tag: '15' },
+            { src: '16.jpg', caption: 'Мой главный источник вдохновения', tag: '16' },
+            { src: '17.jpg', caption: 'Просто мы', tag: '17' },
+            { src: '18.jpg', caption: 'Красота в каждом движении', tag: '18' },
+            { src: '19.jpg', caption: 'Накануне твоего дня', tag: '19' },
+            { src: '20.jpg', caption: 'С Днём Рождения, Алина!', tag: '20' }
+        ];
+
+        /* =====================================================================
+           4. ОТРИСОВКА ФОТОГАЛЕРЕИ (20 КАДРОВ)
+           ===================================================================== */
+        function renderGallery() {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = PHOTOS.map((photo, index) => {
+                const isLeopardFrame = (index + 1) % 4 === 0 || index === 0;
+                const frameStyle = isLeopardFrame
+                    ? 'leopard-fur p-1.5 rounded-xl shadow-md'
+                    : 'bg-white p-1.5 rounded-xl border border-espresso/15 shadow-sm';
+
+                const fallbackUrl = `https://placehold.co/600x800/F4DDE1/241517?text=Фото+${photo.tag}%0A(${photo.src})`;
+
+                return `
+                    <article onclick="openLightbox(${index})"
+                        class="${frameStyle} hover:-translate-y-1 transition-all duration-300 cursor-pointer group">
+                        <div class="bg-[#FAF3EE] rounded-lg overflow-hidden h-full flex flex-col">
+                            <div class="relative aspect-[3/4] overflow-hidden bg-blushPink/30">
+                                <img src="${photo.src}"
+                                     onerror="this.onerror=null; this.src='${fallbackUrl}';"
+                                     alt="${photo.caption}"
+                                     loading="lazy"
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                
+                                <!-- Номер кадра -->
+                                <span class="absolute top-2 left-2 bg-[#FAF3EE]/90 backdrop-blur-sm text-espresso font-editorial font-bold text-xs px-2 py-0.5 rounded-full shadow-sm">
+                                    ${photo.tag}
+                                </span>
+
+                                <!-- Кружевной уголок на каждом 3-м фото -->
+                                ${(index + 1) % 3 === 0 ? '<div class="absolute bottom-0 right-0 w-20 h-20 black-lace-overlay lace-corner-br opacity-85"></div>' : ''}
+                            </div>
+                            <div class="p-2.5 flex-1 flex items-center">
+                                <p class="font-serif italic text-sm sm:text-base text-espresso leading-tight">
+                                    ${photo.caption}
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        /* =====================================================================
+           5. ЛАЙТБОКС
+           ===================================================================== */
+        let currentPhotoIndex = 0;
+
+        function openLightbox(index) {
+            currentPhotoIndex = index;
+            updateLightboxContent();
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('hidden');
+            lb.classList.add('flex');
+        }
+
+        function updateLightboxContent() {
+            const photo = PHOTOS[currentPhotoIndex];
+            const imgEl = document.getElementById('lightbox-img');
+            imgEl.onerror = function() {
+                this.onerror = null;
+                this.src = `https://placehold.co/600x800/F4DDE1/241517?text=Фото+${photo.tag}%0A(${photo.src})`;
+            };
+            imgEl.src = photo.src;
+            document.getElementById('lightbox-num').textContent = `Кадр ${photo.tag} / 20`;
+            document.getElementById('lightbox-caption').textContent = photo.caption;
+        }
+
+        function navigateLightbox(step, event) {
+            event.stopPropagation();
+            currentPhotoIndex = (currentPhotoIndex + step + PHOTOS.length) % PHOTOS.length;
+            updateLightboxContent();
+        }
+
+        function closeLightbox(event, force = false) {
+            if (force || event.target.id === 'lightbox') {
+                const lb = document.getElementById('lightbox');
+                lb.classList.add('hidden');
+                lb.classList.remove('flex');
+            }
+        }
+
+        /* =====================================================================
+           6. ЖИВЫЕ СЧЕТЧИКИ ВРЕМЕНИ И СООБЩЕНИЙ
+           ===================================================================== */
+        function updateLiveCounters() {
+            const now = new Date();
+
+            // 1. Минуты и секунды с 22 апреля 2026, 22:05
+            const diffMsgMs = Math.max(0, now - CONFIG.firstMessageDate);
+            const totalMinutes = Math.floor(diffMsgMs / (1000 * 60));
+            const msgSeconds = Math.floor((diffMsgMs / 1000) % 60);
+
+            document.getElementById('minutes-counter').textContent = totalMinutes.toLocaleString('ru-RU');
+            document.getElementById('seconds-counter').textContent = String(msgSeconds).padStart(2, '0');
+
+            // 2. Дни, часы, минуты, секунды с 20 мая 2026
+            const diffRelMs = Math.max(0, now - CONFIG.relationshipStartDate);
+            const days = Math.floor(diffRelMs / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diffRelMs / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diffRelMs / (1000 * 60)) % 60);
+            const secs = Math.floor((diffRelMs / 1000) % 60);
+
+            document.getElementById('rel-days').textContent = String(days).padStart(2, '0');
+            document.getElementById('rel-hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('rel-mins').textContent = String(mins).padStart(2, '0');
+            document.getElementById('rel-secs').textContent = String(secs).padStart(2, '0');
+        }
+
+        let messagesAnimated = false;
+        function animateMessagesCount() {
+            if (messagesAnimated) return;
+            messagesAnimated = true;
+
+            const el = document.getElementById('messages-counter');
+            const target = CONFIG.totalMessages;
+            const duration = 1700;
+            const start = performance.now();
+
+            function frame(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 4);
+                el.textContent = Math.floor(ease * target).toLocaleString('ru-RU');
+                if (progress < 1) {
+                    requestAnimationFrame(frame);
+                } else {
+                    el.textContent = target.toLocaleString('ru-RU');
+                }
+            }
+            requestAnimationFrame(frame);
+        }
+
+        /* =====================================================================
+           7. МУЗЫКА (СВОЙ song.mp3 ИЛИ ВСТРОЕННАЯ МЕЛОДИЯ ШКАТУЛКИ)
+           ===================================================================== */
+        let isMusicPlaying = false;
+        let toneLoop = null;
+        let synth = null;
+
+        async function startMusic() {
+            const audioEl = document.getElementById('bg-music');
+            try {
+                // Сначала пробуем запустить локальный файл song.mp3
+                await audioEl.play();
+                isMusicPlaying = true;
+                updateMusicUI();
+            } catch (err) {
+                // Если файла song.mp3 ещё нет в папке, запускаем встроенную нежную мелодию
+                try {
+                    await Tone.start();
+                    if (!synth) {
+                        synth = new Tone.PolySynth(Tone.Synth, {
+                            oscillator: { type: 'sine' },
+                            envelope: { attack: 0.15, decay: 0.4, sustain: 0.3, release: 1.8 }
+                        }).toDestination();
+                        synth.volume.value = -12;
+
+                        const chords = [
+                            ['F4', 'A4', 'C5'], ['E4', 'G4', 'B4'],
+                            ['D4', 'F4', 'A4'], ['C4', 'E4', 'G4'],
+                            ['Bb3', 'D4', 'F4'], ['C4', 'E4', 'G4']
+                        ];
+                        let idx = 0;
+                        toneLoop = new Tone.Loop((time) => {
+                            synth.triggerAttackRelease(chords[idx % chords.length], '2n', time);
+                            idx++;
+                        }, '1n');
+                    }
+                    Tone.Transport.start();
+                    toneLoop.start(0);
+                    isMusicPlaying = true;
+                    updateMusicUI();
+                } catch (toneErr) {
+                    console.log('Ожидание клика для звука');
+                }
+            }
+        }
+
+        function stopMusic() {
+            const audioEl = document.getElementById('bg-music');
+            if (!audioEl.paused) audioEl.pause();
+            if (typeof Tone !== 'undefined' && Tone.Transport.state === 'started') {
+                Tone.Transport.pause();
+            }
+            isMusicPlaying = false;
+            updateMusicUI();
+        }
+
+        function toggleMusic() {
+            isMusicPlaying ? stopMusic() : startMusic();
+        }
+
+        function updateMusicUI() {
+            const btn = document.getElementById('music-toggle');
+            const eq = document.getElementById('eq-bars');
+            const label = document.getElementById('music-label');
+            btn.classList.remove('hidden');
+            btn.classList.add('flex');
+
+            if (isMusicPlaying) {
+                eq.classList.add('eq-active');
+                label.textContent = 'Играет';
+            } else {
+                eq.classList.remove('eq-active');
+                label.textContent = 'Пауза';
+            }
+        }
+
+        /* =====================================================================
+           8. ОТКРЫТИЕ ПОДАРОЧНОЙ КОРОБКИ
+           ===================================================================== */
+        let isGiftOpened = false;
+
+        function openGift() {
+            if (isGiftOpened) return;
+            isGiftOpened = true;
+
+            const overlay = document.getElementById('gift-overlay');
+            overlay.classList.add('gift-opening');
+            startMusic();
+
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                overlay.style.visibility = 'hidden';
+                triggerScrollReveal();
+            }, 900);
+        }
+
+        function resetGift() {
+            isGiftOpened = false;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const overlay = document.getElementById('gift-overlay');
+            overlay.classList.remove('gift-opening');
+            overlay.style.visibility = 'visible';
+            overlay.style.opacity = '1';
+        }
+
+        /* =====================================================================
+           9. ИНИЦИАЛИЗАЦИЯ
+           ===================================================================== */
+        function triggerScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const winH = window.innerHeight;
+            reveals.forEach((el) => {
+                if (el.getBoundingClientRect().top < winH - 50) {
+                    el.classList.add('active');
+                    if (el.id === 'stats-section') animateMessagesCount();
+                }
+            });
+        }
+
+        window.addEventListener('scroll', triggerScrollReveal);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            preloadCustomTextures();
+            renderGallery();
+            updateLiveCounters();
+            setInterval(updateLiveCounters, 1000);
+        });
+    </script>
+</body>
+</html>
